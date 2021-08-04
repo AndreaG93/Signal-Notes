@@ -1,0 +1,409 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\author{Andrea Graziani}
+\title{Formulario}
+
+
+\begin{document}
+
+\section{Definizione di trasformata di Fourier}
+
+\begin{equation}
+X(f) = \mathcal{F} \left[ x(t) \right] = \int^{\infty}_{-\infty} x(t)e^{-j2\pi ft} dt
+\end{equation}
+
+\begin{equation}
+x(t) = \mathcal{F}^{-1} \left[ X(f) \right] = \int^{\infty}_{-\infty} X(f)e^{j2\pi ft} df
+\end{equation}
+
+\section{Proprietà principali della trasformata di Fourier}
+
+Sia $X(f)$ la trasformata di Fourier di $x(t)$. Allora valgono le seguenti proprietà:
+
+\begin{multicols}{2}
+\begin{description}
+
+\item[Inversione di segno]
+\begin{equation}
+\mathcal{F}[x(-t)] = X(-f)
+\end{equation}
+
+\item[Proprietà di dualità]
+\begin{equation}
+\mathcal{F}[X(t)] = x(-f)
+\end{equation}
+
+\item[Cambiamento di scala]
+\begin{equation}
+\mathcal{F}[x(\alpha t)] = \frac{1}{| \alpha |}X \left( \frac{f}{\alpha} \right) \qquad \alpha \in \mathbb{R} \setminus \{0\}
+\end{equation}
+
+\item[Integrazione nel tempo]
+\begin{equation}
+\mathcal{F} \left[ \int x(t)dt \right] = \dfrac{X(f)}{j2\pi f}
+\end{equation}
+
+\columnbreak
+\item[Derivazione nel tempo]
+\begin{equation}
+\mathcal{F} \left[ \frac{d^n}{dt^n} x(t) \right] = X(f)(j 2\pi f)^n
+\end{equation}
+
+\item[Derivazione in frequenza]
+\begin{equation}
+\mathcal{F} [(-t)^kx(t)] = \dfrac{1}{(j2\pi)^k} \frac{d^k}{df^k} X(f) \qquad \forall f \in \mathbb{R}
+\end{equation}
+
+\item[Traslazione in frequenza]
+\begin{equation}
+\mathcal{F} [x(t)e^{j2\pi f_0 t}] = X(f-f_0) \qquad \forall f_0 \in \mathbb{R}
+\end{equation}
+
+\item[Traslazione nel tempo]
+\begin{equation}
+\mathcal{F} [x(t-t_0)] = X(t)e^{-j2\pi f t_0} \qquad \forall t_0 \in \mathbb{R}
+\end{equation}
+
+\item[Proprietà di convoluzione]
+\begin{equation}
+y(t) = x(t) \ast h(t) = \int^{\infty}_{-\infty} x(\tau)h(t-\tau) d\tau
+\end{equation}
+\begin{equation}
+\mathcal{F} [y(t)] = Y(f) = X(f)H(f)
+\end{equation}
+
+\end{description}
+\end{multicols}
+
+\section{Trasformate di Fourier notevoli}
+
+\[ 
+\mathcal{F} [\delta(t)] = 1
+\qquad \overbrace{\Leftrightarrow}^{\text{Dualità}} \qquad
+\mathcal{F} [1] = \delta(t)
+\]
+
+\[ 
+\mathcal{F} [e^{-j2\pi f_0t}] = \delta(f - f_0)
+\]
+
+\[ 
+\mathcal{F} [rect(t)] = sinc(f) 
+\qquad \overbrace{\Leftrightarrow}^{\text{Dualità}} \qquad
+\mathcal{F} [sinc(t)] = rect(f)
+\]
+
+\[ 
+\mathcal{F} [e^{-\alpha t}]  = \dfrac{1}{\alpha + j 2\pi f} \qquad \alpha > 0
+\qquad \overbrace{\Leftrightarrow}^{\text{Dualità}} \qquad
+\mathcal{F} \left[ \dfrac{1}{\alpha + j 2\pi t} \right] = e^{\alpha f} \qquad \alpha > 0
+\]
+
+\[ 
+\mathcal{F} [e^{\alpha t}]  = \dfrac{1}{\alpha - j 2\pi f} \qquad \alpha > 0
+\qquad \overbrace{\Leftrightarrow}^{\text{Dualità}} \qquad
+\mathcal{F} \left[ \dfrac{1}{\alpha - j 2\pi t} \right] = e^{-\alpha f} \qquad \alpha > 0
+\]
+
+
+\[ 
+\mathcal{F} [e^{-\alpha |t|}]  = \dfrac{2\alpha}{\alpha^2 + 4\pi^2 f^2} \qquad \alpha > 0
+\qquad \overbrace{\Leftrightarrow}^{\text{Dualità}} \qquad
+\mathcal{F} \left[ \dfrac{2\alpha}{\alpha^2 + 4\pi^2 t^2} \right] = e^{-\alpha |f|} \qquad \alpha > 0
+\]
+
+\[ 
+\mathcal{F} [sgn(t)]  = \dfrac{1}{j\pi f} \quad \forall f
+\qquad \overbrace{\Leftrightarrow}^{\text{Dualità}} \qquad
+\mathcal{F} \left[ \dfrac{1}{j\pi t} \right] = -sgn(f)
+\]
+
+\[ 
+\mathcal{F} \left[ \dfrac{1}{t}  \right]  = -j\pi sgn(f) \quad \forall f
+\qquad \overbrace{\Leftrightarrow}^{\text{Dualità}} \qquad
+\mathcal{F} \left[ -j\pi sgn(t) \right] = -\dfrac{1}{f}
+\]
+
+\section{Segnali fondamentali}
+
+\begin{multicols}{2}
+\begin{description}
+\item[Gradino unitario]
+\[
+u(t)= 
+\left\lbrace
+\begin{array}{ll}
+0 & \quad \forall t < 0 \\
+\dfrac{1}{2} & \quad t = 0 \\
+1 & \quad \forall t > 0 \\
+\end{array}
+\right.
+\]
+
+\item[Segno]
+\[
+sgn(t)= 
+\left\lbrace
+\begin{array}{ll}
+-1 & \quad \forall t < 0 \\
+0 & \quad t = 0 \\
+1 & \quad \forall t > 0 \\
+\end{array}
+\right.
+\]
+
+\item[Impulso rettangolare unitario]
+\[
+rect \left( \dfrac{t}{T} \right)= 
+\left\lbrace
+\begin{array}{ll}
+1 & \quad -\dfrac{T}{2} \leq t \leq \dfrac{T}{2} \\
+\dfrac{1}{2} & \quad t = -\dfrac{T}{2},t = \dfrac{T}{2} \\
+0 & \quad t < -\dfrac{T}{2}, t > \dfrac{T}{2} \\
+\end{array}
+\right.
+\]
+
+\item[Segnale sinc]
+\[
+sinc \left( \dfrac{t}{T} \right) = \dfrac{\sin(\pi t/T)}{\pi t/T}
+\]
+\columnbreak
+\item[Segnale gaussiano unitario]
+\[
+gauss \left( \dfrac{t}{T} \right) = e^{{-\dfrac{1}{2}}{\left( \dfrac{t}{T} \right)}^2}
+\]
+
+\item[Segnale unitario a decadimento esponenziale]
+\[
+u_e \left( \dfrac{t}{T} \right) = e^{-\dfrac{t}{T}}u(t)
+\]
+
+\item[Segnale a rampa]
+\[
+ramp \left( \dfrac{t}{T} \right) = \dfrac{t}{T} u(t)
+\]
+
+\end{description}
+\end{multicols}
+
+\section{Teoria (presa dagli esercizi)}
+
+\begin{itemize}
+\item Due segnali che abbiano spettri disgiunti in frequenza sono necessariamente ortogonali.
+\end{itemize}
+
+
+\newpage
+\section{Codici}
+
+\subsection{Teoria}
+
+\begin{description}
+\item[Definizione dei concetti di \textit{dataword} e \textit{codeword}] In un codice a blocchi, il data stream è segmentato in vettori di $k$ bit detti \textbf{\textit{dataword}} e viene posto in ingresso al codificatore il quale fornisce in uscita un vettore di $n$ bit detto \textbf{\textit{codeword}}. Quindi in un \textbf{codice a blocchi (n,k)} le \textit{dataword} consistono in $k$ bit e le \textit{codeword} in $n$ bit.
+
+\item[Codificatore sistematico] Un codificatore si dice \textbf{sistematico} quando i primi $k$ bit di ogni \textit{codeword} coincidono con i $k$ bit della \textit{dataword}; in tal caso i rimanenti $n-k$ bit verranno utilizzati come controlli di parità sui $k$ bit d'informazione. Un codificatore sistematico è definito anche come codificatore \textit{senza memoria}.
+
+\item[Teorema rilevazione errore] Un codice lineare a blocchi $(n,k)$ con distanza minima $d_{min}$  può rilevare tutti i vettori errore di peso non maggiore di:
+
+\begin{equation}
+r = d_{min}-1
+\end{equation}
+
+\item[Teorema correzione errore] Un codice lineare a blocchi $(n,k)$, con distanza minima $d_{min}$, può correggere tutti i vettori d'errore contenenti un numero di errori non maggiore di:
+
+\begin{equation}
+t = \lfloor (d_{min} - 1) / 2 \rfloor	
+\end{equation}
+
+dove $\lfloor a \rfloor$ denota il più grande intero contenuto in a. Si dice anche che un codice a blocchi $(n,k)$ con distanza minima $d_{min}$ è un codice a correzione di $t$ errori (\textit{t-error correcting code}), o codice $(n,k,t)$.
+
+\item[Codice lineare a blocchi ciclico] Un codice lineare a blocchi $(n,k)$ è \textbf{ciclico} se e solo se ogni traslazione ciclica di una \textit{codeword} produce un'altra \textit{codeword}. Analizziamo due esempi:
+\begin{description}
+\item[BCH (Bose-Chauduri-Hocquenghem)] Sono codici ciclici \textbf{non necessariamente binari} che costituiscono una generalizzazione dei codici di Hamming. Si ha che:
+\begin{equation}
+BCH(n,k) \Rightarrow n = 2^m-1, \qquad n-k \leq mt, \qquad d_{min} \geq 2t+1 \qquad \text{con } m \geq 3
+\end{equation}
+dove $m$ è un numero intero positivo mentre $t$ indica il numero di errori correggibili.
+
+\item[RS (Reed Solomon)] Cono codici ciclici \textbf{non binari} che rappresentano una sottoclasse dei codici BCH non-binari. Si ha che:
+\begin{equation}
+RS(n,k) \Rightarrow n = 2^m-1, \qquad n-k = 2t, \qquad d_{min} = n-k+1
+\end{equation}
+dove $m$ è un numero intero positivo mentre $t$ indica il numero di errori correggibili.
+\end{description}
+
+\item[Codifica di canale]
+
+La \textbf{codifica di canale} è un'operazione finalizzata ad aggiungere \textit{ridondanza} e \textit{memoria} all'informazione trasmessa così da rivelare e/o correggere errori. Ad esempio, ogni $k$ bit informativi si generano blocchi di $n$ bit codificati. Quando utilizziamo una codifica di canale dobbiamo prestare attenzione a:
+\begin{itemize}
+\item La sorgente trasmette un flusso di bit di informazione alla frequenza $f_b$ (\textit{frequenza di bit}) con un energia pari $E_b$ (\textit{energia di bit});
+\item Il codificatore applica una codifica $(n,k)$ con un efficienza di codifica pari a $R_c=\dfrac{k}{n}$;
+\item Il codificatore, dopo aver applicato una codifica $(n,k)$, trasmette un flusso di bit informativi codificati alla frequenza $f_c$ (\textit{frequenza bit codificati}) con un energia pari a $E_b^{(c)}$ (\textit{energia di bit codificato}) dove:
+
+\begin{equation}
+E_b^{(c)} = E_b \dfrac{k}{n} 
+\end{equation}
+Più in generale si ha che:
+\begin{equation}
+E_b^{(c)} = E_b \dfrac{\text{Bit informativi totali}}{\text{Bit informativi totali} + \text{Bit totali con codifica}} 
+\end{equation}
+dove:
+\begin{equation}
+\text{Bit totali codificati} = \dfrac{\text{Bit codificati} \cdot (n-k)}{k}
+\end{equation}
+
+\end{itemize}
+
+
+\item[Probabilità di non sbagliare]
+Supponiamo che la sorgente trasmetta un flusso di bit informativi con una certa frequenza ed energia di bit. Definiamo \textbf{probabilità di errore sui bit} come segue: 
+
+\begin{equation}
+P_b = \dfrac{e^{-\dfrac{E_b}{n_0}}}{3\pi} 
+\end{equation}
+
+Applicando una codifica $(n,k)$, definiamo \textbf{probabilità di errore sui bit codificati} come segue:
+
+\begin{equation}
+P_{bc} = \dfrac{e^{-\dfrac{E_b^{(c)}}{n_0}}}{3\pi} = \dfrac{e^{-\dfrac{E_b}{n_0}\dfrac{k}{n}}}{3\pi}
+\end{equation}
+
+In generale la probabilità di avere $i$ bit errati su un totale di $n$ bit totali codificati è pari a:
+\begin{equation}
+P(X=i)=\binom{n}{i}(P_{bc})^i(1-P_{bc})^{n-i}
+\end{equation}
+
+Se il codificatore applica una codifica capace di correggere $t$ errori possiamo definire \textbf{la probabilità di non sbagliare} $P_{ns}$ come segue:
+
+\begin{equation}
+P_{ns}=\sum_{c=0}^t \binom{n}{t}(P_{bc})^t(1-P_{bc})^{n-t}
+\end{equation}
+
+Infine se $P_{bc}$ è sufficientemente piccola possiamo dire che:
+
+\begin{equation}
+P_b=P_{ns}\dfrac{2t + 1}{n}
+\end{equation}
+
+Ricorda che quando utilizzo una codifica \textbf{a PARITA' di probabilità di errore} sui bit d\textbf{iminuisce l'energia per bit} disponibile poiché \textbf{aumenta} il numero di bit trasmessi. In tal caso si parla infatti di \textbf{guadagno di codifica} cioè la differenza (in decibel) nel valore di $\dfrac{E_b}{n_0}$ richiesto per ottenere una data probabilità di errore sui bit tra una trasmissione binaria antipodale non codificata e quella codificata.
+
+
+\end{description}
+
+\subsection{Riepilogo grandezze fisiche utilizzate}
+\begin{description}
+
+\item[Banda lorda $B_{\text{lorda}}$ dove $B_{\text{lorda}} = B_{\text{netta}}(1+\text{roll-off})$]
+\item[Frequenza di bit $f_b$ ($bit/s$)] 
+\item[Frequenza di simbolo $f_s$ ($simboli/s$) con $f_s=\dfrac{f_b}{log_2 (N)}$] 
+\item[Occupazione di banda $B$ ($Hz$)] 
+\item[Quantità di simboli utilizzati $N$ costituiti da $log_2(N)$ bit] 
+\item[Tempo di simbolo $T_s$ con $T_s = \dfrac{1}{f_s}$] 
+\item[Tempo di bit $T_b$ con $T_s = \dfrac{1}{f_b}$] 
+\item[Energia media di simbolo $E_s$ con $E_s = PT_s = \dfrac{P}{f_s}$ e $E_s = \dfrac{E_b f_b}{f_s}$]
+\item[Energia media di bit $E_b$ con $E_b = PT_b = \dfrac{P}{f_b}$ e $E_b = \dfrac{E_s f_s}{f_b}$]
+\item[Banda minima in \textit{banda base} $B_{min} = \dfrac{1}{2T_s}$]
+\item[Banda minima nelle modulazioni lineari ASK, PSK, QAM e DSB $B_{min} = f_s = \dfrac{f_b}{log_2 (N)}$]
+\item[Banda minima per il segnale in modulazione $B_{min} = \dfrac{1}{T_s}$]
+\item[Densità spettrale di rumore $n_0$]
+\item[Rapporto segnale rumore $SNR = \dfrac{P}{n_0B}$]
+\item[Bit Error Ratio $BER$ indicato anche come $P_b$ (Probabilità di errore sul bit)]
+\item[Probabilità di ritrasmissione indicato spesso con $P_{ARQ}$ dove $(1-P_{ARQ})=(1-P_{b})^{\text{bit}}$]
+\item[Parametro $\gamma$, dove $\gamma = \dfrac{E_b}{n_0}$]
+\item[Un canale con trasmissione binaria antipodale $\Rightarrow$ $2PSK$]
+
+\end{description}
+
+\subsection{Modulazioni}
+
+Le modulazioni "traslano" l'informazione di banda base in \textbf{banda traslata} cioè bit o gruppi di bit da trasmettere sono associati a variazioni discrete dei parametri della portante trasmissiva (ampiezza, fase o frequenza), così che il ricevitore possa ricostruirli a partire dalla portante modulata ricevuta.
+
+Il modulatore emette, con \textbf{frequenza di simbolo} $f_s$ (simboli/s) un "segnale" scelto tra $M$ disponibili (più propriamente, scelto tra $M$ variazioni discrete di ampiezza, di fase o di frequenza), associandolo a gruppi di simboli binari costituiti da $log_2(N)$ bit.
+
+L'occupazione di banda $B$ è legata direttamente alla frequenza di simbolo: la banda minima è Bmin= 2·fN= fs 
+
+\begin{equation}
+B_{min} = 2f_N = f_s = \dfrac{f_b}{log_2(N)}
+\end{equation}
+dove $f_N$ è la metà della frequenza di simbolo.
+ 
+Modulazioni di ordine superiore richiedono $\dfrac{E_b}{n_0}$ maggiori a \textbf{PARITA' di probabilità di errore} ma sono più efficienti in banda, cioè consentono data rate maggiori.
+
+\begin{description}
+
+\item[2 PSK] 
+\[
+N=2
+\qquad
+P_b = \dfrac{e^{-\gamma}}{3\pi} 
+\qquad
+B_{min} = f_s=\dfrac{f_b}{log_2 (2)} = f_b
+\]
+
+\item[4 PSK] 
+\[
+N=4
+\qquad
+P_b = \dfrac{e^{-\gamma}}{3\pi} 
+\qquad
+B_{min} = f_s=\dfrac{f_b}{log_2 (4)} = \dfrac{f_b}{2}
+\]
+
+\item[8 PSK] 
+\[
+N=8
+\qquad
+P_b = \dfrac{e^{-\gamma}}{3\pi} 
+\qquad
+B_{min} = f_s =\dfrac{f_b}{log_2 (8)} = \dfrac{f_b}{3}
+\]
+
+
+\item[16 QAM] 
+\[
+N=16
+\qquad
+P_b = \dfrac{3}{4}\dfrac{e^{-\dfrac{2\gamma}{5}}}{3\pi} 
+\qquad
+B_{min} = f_s =\dfrac{f_b}{log_2 (16)} = \dfrac{f_b}{4}
+\]
+
+\item[64 QAM] 
+\[
+N=64
+\qquad
+P_b = \dfrac{2}{3}\dfrac{e^{-\dfrac{\gamma}{7}}}{3\pi} 
+\qquad
+B_{min} = f_s =\dfrac{f_b}{log_2 (64)} = \dfrac{f_b}{6}
+\]
+
+\item[256 QAM] 
+\[
+N=256
+\qquad
+P_b = \dfrac{2}{4}\dfrac{e^{-\dfrac{\gamma}{20}}}{3\pi} 
+\qquad
+B_{min} = f_s =\dfrac{f_b}{log_2 (256)} = \dfrac{f_b}{8}
+\]
+
+\end{description}
+
+\section{Alcuni appunti}
+
+\[
+\dfrac{d}{dt} abs(t) = sgn(t)
+\]
+
+\[
+\dfrac{sgn(t)}{abs(t)} = \dfrac{1}{t}
+\]
+
+
+\end{document}
